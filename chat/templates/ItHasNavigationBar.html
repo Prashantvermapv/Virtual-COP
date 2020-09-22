@@ -1,0 +1,569 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+   	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="description" content="Example of using GIF files to bring text to speech voices to life in your browser.">
+		<script type="text/javascript" src="{% static 'js/libgif.js' %}"></script>
+		<title>Virtual Cop</title>
+			<link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <script src="https://kit.fontawesome.com/fbf6796863.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title> </title>
+    </head>
+    <style>
+
+  .monospace{
+font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+@import "compass/css3";
+
+
+section {
+  max-width: 450px;
+  margin: 50px auto;
+  div {
+    max-width: 255px;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+    line-height: 24px;
+  }
+}
+
+.clear {
+  clear: both
+}
+
+.from-me {
+  position: relative;
+  padding: 10px 20px;
+  color: white;
+  background: #0B93F6;
+  border-radius: 25px;
+  float: right;
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: -2px;
+    right: -7px;
+    height: 20px;
+    border-right: 20px solid #0B93F6;
+    border-bottom-left-radius: 16px 14px;
+    -webkit-transform: translate(0, -2px);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: -2px;
+    right: -56px;
+    width: 26px;
+    height: 20px;
+    background: white;
+    border-bottom-left-radius: 10px;
+    -webkit-transform: translate(-30px, -2px);
+  }
+}
+
+.from-them {
+  position: relative;
+  padding: 10px 20px;
+  background: #E5E5EA;
+  border-radius: 25px;
+  color: black;
+  float: left;
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    bottom: -2px;
+    left: -7px;
+    height: 20px;
+    border-left: 20px solid #E5E5EA;
+    border-bottom-right-radius: 16px 14px;
+    -webkit-transform: translate(0, -2px);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    bottom: -2px;
+    left: 4px;
+    width: 26px;
+    height: 20px;
+    background: white;
+    border-bottom-right-radius: 10px;
+    -webkit-transform: translate(-30px, -2px);
+  }
+}
+
+@keyframes loud {
+  20% {
+    transform: rotate3d(0, 0, 1, 5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  25% {
+    transform: rotate3d(0, 0, 1, -5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  30% {
+    transform: rotate3d(0, 0, 1, 5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  35% {
+    transform: rotate3d(0, 0, 1, -5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  40% {
+    transform: rotate3d(0, 0, 1, 5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  45% {
+    transform: rotate3d(0, 0, 1, -5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  50% {
+    transform: rotate3d(0, 0, 1, 5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  60% {
+    transform: rotate3d(0, 0, 1, 5deg) scale3d(1.5, 1.5, 1.5);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+.loud {
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  transform-origin: center center;
+  animation-name: loud;
+}
+
+@keyframes slam {
+  0% {
+    transform: rotate3d(0, 0, 1, 5deg) scale3d(3, 3, 3) translate3d(-50px, -10px, 0);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+  18% {
+    transform: rotate3d(0, 0, 1, 0deg) scale3d(1, 1, 1) translate3d(0, 0, 0);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.45);
+  }
+  40% {
+    transform: rotate3d(0, 0, 1, 1deg) scale3d(1.1, 1.1, 1.1) translate3d(-1px, -1px, 0);
+    box-shadow: 0px 0px 100px 2px rgba(0, 0, 0, 0.25);
+  }
+  55% {
+    transform: rotate3d(0, 0, 1, 0deg) scale3d(1.0, 1.0, 1.0) translate3d(0px, 0px, 0);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+    box-shadow: 0px 0px 125px 5px rgba(0, 0, 0, 0);
+  }
+}
+
+.slam {
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(.87, .58, .25, 1.29);
+  transform-origin: center center;
+  animation-name: slam;
+}
+
+@keyframes gentle {
+  0%,
+  50% {
+    transform: scale3d(1.5, 1.5, 1.5);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+@keyframes gentle-text {
+  0%,
+  50% {
+    transform: scale3d(0.5, 0.5, 0.5);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+.gentle {
+  animation-duration: 4s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+  transform-origin: bottom right;
+  animation-name: gentle;
+  p {
+    animation-duration: 4s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+    transform-origin: center center;
+    animation-name: gentle-text;
+  }
+}
+
+
+
+		/* the superGifCanvas elements can be styled if you need to*/
+		/*
+		.superGifCanvas {
+			width:100%;
+		}
+		*/
+		* {
+		    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.guierrormessage {
+			color: #FF0000;
+		}
+		.guioption{
+			width: 280px;
+			padding: 0.2em;
+			font-size: 1em;
+			display: inline-block;
+			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1) inset;
+		}
+		#giferrormessage {
+			display: inline-block;
+		}
+		#newgifbutton {
+		font-size: 1.0rem;
+		padding: 0.5rem 0.6em;
+		background: #69c773;
+		border-bottom: 1px solid #498b50;
+		color: white;
+		-webkit-font-smoothing: antialiased;
+		font-weight: bold;
+		margin: 0;
+		height: 35px;
+		text-align: center;
+		}
+		#texttospeakinput {
+			width:96%;
+		}
+		.superGifCanvas{
+			max-width: 100%;
+		}
+		#imagecontainer{
+			left: 0;
+    position: absolute;
+        }
+.bb{
+border:solid 0px white;
+border-top-left-radius:30px;
+border-top-right-radius:30px;
+border-bottom-left-radius:30px;
+border-bottom-right-radius:30px;
+font-size:25px;
+}
+
+
+        .chatbox-header {
+    	background-color: $bg-gray-4;
+		display: flex;
+		padding: 10px 20px;
+		.pp {
+		margin: 10px 15px;
+		img {
+			width: 60px;
+			height: 60px;
+			@include border-radius(50%);
+		}
+		span {
+			color: $font-light-blue-3;
+			font-size: 1.5em;
+			margin-left: 10px;
+		}
+	}
+}
+
+	</style>
+    <body>
+        <div  class="">
+
+
+
+            <!--Second nav bar-->
+           <nav class="navbar navbar-expand-lg navbar-light p-0 bg-white">
+                <div class="container">
+                    <a class="navbar-brand m-0" href="#">
+                        <img src="{% static 'images/logo.png' %}" alt="logo" height="110" width="90">
+                    </a>
+                    <div class="nav-item">
+                        <h3> Government of  <br> Madhya Pradesh</h3>
+                        <strong >Your virtual Police buddy</strong>
+                    </div>
+                      <ul style="width: 70%;" class="nav justify-content-end">
+                        <!--<li class="nav-item" style="margin-right:100px;">
+                            <a class="nav-link" href="#">VR Room</a>
+                        </li>--!>
+                        <li class="nav-item" style="margin-right:150px;">
+                            <a class="nav-link" href="#">Track FIR</a>
+                        </li>
+                        <li class="nav-item" style="margin-right:150px;">
+                            <a class="nav-link" href="#">Sketch</a>
+                        </li>
+                        <li class="nav-item" style="margin-right:40px;">
+                            <a class="nav-link" href="#">Login/Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--Second nav bar end-->
+
+
+            <!--details bar-->
+            <nav class="navbar p-0" style="background-color:#FFED75;">
+                <div class="container">
+                    <a class="nav-item mt-2 mb-2" style="color:#B51714; font-weight: 700; font-size: 14px; " href="#">
+                        Helpline Number :+91-11-23978046
+                    </a>
+                    <a class="nav-item mt-2 mb-2" style="color:#B51714; font-weight: 700; font-size: 14px;" href="#">
+                        Toll Free : 1075
+                    </a>
+                    <a class="nav-item mt-2 mb-2" style="color:#B51714; font-weight: 700; font-size: 14px;" href="#">
+                        Helpline Email ID : ncov2019@gov.in
+                    </a>
+                    <a class="nav-item mb-2 mt-2" style="color:#B51714; font-weight: 700; font-size: 14px;" href="#">
+                        States & Union Territories (View pdf)
+                    </a>
+                    <a class="nav-item mb-2 mt-2" style="color:#B51714; font-weight: 700; font-size: 14px;" href="#">
+                        Download our app
+                    </a>
+                </div>
+            </nav>
+            <!--details bar end-->
+
+            <center>
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+			<script type="text/javascript">
+				$(function () {
+					$("#bot-btn").click(function () {
+						if ($(this).val() == "Bring Up Voice chat") {
+							$("#chatbox").show();
+						} else {
+							$("#chatbox").hide();
+							$(this).val("Bring Up Voice chat");
+						}
+					});
+
+				});
+      </script>
+      <img  id="bot-btn"src = "{% static 'images/police.gif' %}" height="200px"width="200px" style="position: fixed;right: -17px;bottom: -30px;">
+      <div class="from-me loud"style="position: fixed;right: 140px;bottom: 8px;">
+    <p>Bring Up Voice chat!😃</p>
+  </div>
+			<div id = chatbox style="display:none;position: fixed;bottom: 10px;right: 1px;height: 440px;width: 390px; background-color:#dfede2;">
+				<div class="chatbox-header" style="background-color:#007BFF;height: 50px;">
+					<span class="pp"></span>
+							<span class="monospace" style="color: beige;"><img src="{% static 'images/police.gif' %}"style="margin-bottom:-15px;margin-top:-15px;height:60px;width:65px;"><b>V-COP</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="#"style="float:right;color: beige;" onclick="hide('chatbox')"><b>X</b></a>
+						</span>
+
+				</div>
+
+
+				<div class="container"style="position: fixed;width: fit-content;left: 600px;">
+
+					  <div class="row" >
+						<div class="col-xs-6 col-xs-offset-3">
+
+
+							  <div class="input-group input-group-lg" style="position: fixed;bottom: 0;width:390px;right: 0;">
+								<input type="text" class="form-control js-text"style="width:360px;"placeholder="Type Hi to begin.">
+								<div class="right">
+									<button id="start_button" onclick="startButton(event)">
+									  <img id="start_img" style="height: 40px;width: 25px;" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif" alt="Start"></button>
+								  </div>
+								<span class="input-group-btn">
+									  <button class="btn btn-primary js-say" onclick="scroll" style="height:45px;">Submit</button>
+								</span>
+							  </div>
+
+						</div>
+						<ul class="list-group js-chat-log" style="max-height: 350px;overflow-x:hidden;overflow: auto;left: 370px;position: absolute;width: 435px;"></ul>
+					  </div>
+						<script>
+							window.onload=function () {
+							var objDiv = document.getElementById("list-group");
+							objDiv.scrollTop = objDiv.scrollHeight;
+						}
+						  </script>
+
+				</div>
+			</div>
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+			<script>
+			   function hide(target) {
+			document.getElementById(target).style.display = 'none';
+		}
+				</script>
+
+
+
+
+
+          <script src="{% static 'js/jquery.js' %}"></script>
+          <script src="{% static 'js/js.cookie.js' %}"></script>
+          <script src="{% static 'js/bootstrap.js' %}"></script>
+
+          <div id="ttsoptions">
+      			<div>
+      				<label style="
+      				position: absolute;
+      				right: 290px;
+      				top: 12px;
+      			"></label>
+      			<select id="voiceSelecter" class="guioption"style="
+      			position: absolute;
+      			right: 0;
+      		"></select>
+      		</div>
+
+
+        <script type="text/javascript">
+        </script>
+        <div >
+            <a href="javascript:playsyncronized()">
+                <div id="imagecontainer">
+                    <img id="exampleimg" src="https://i.imgur.com/ork8hoP.gif" rel:animated_src="https://i.imgur.com/ork8hoP.gif" rel:auto_play="0" />
+                </div>
+            </a>
+        </div>
+
+
+
+
+
+
+
+
+<button class="btn bb btn-primary" style="margin-top:50px;margin-left:200px;height:350px;width:270px;" onclick="window.location.href = 'https://28a6fdfd9be74ac1a46993c36d9d5616.us-east-1.sumerian.aws/?';" ><span style="font-size:40px;"><strong>VR Room</strong></span></br>To Experiecnce the Virtual Police Station </button>
+
+
+<button class="btn bb btn-success" style="margin-top:50px;margin-left:20px;height:350px;width:270px;"><span style="font-size:40px;">
+<strong>Face Recognition</strong></span></br>To recognise face</button>
+
+
+
+
+
+
+
+        <br>
+
+        <div id="footer">
+
+      <script type="text/javascript" src="{% static 'js/example.js' %}"></script>
+
+        </center>
+    </div>
+
+
+
+
+        </div>
+
+        <script>
+            var $chatlog = $('.js-chat-log');
+            var $input = $('.js-text');
+            var formData = new FormData();
+            var $sayButton = $('.js-say');
+            var dialogflowUrl = '{% url "index" %}';
+            var csrftoken = Cookies.get('csrftoken');
+
+
+            function csrfSafeMethod(method) {
+              // these HTTP methods do not require CSRF protection
+              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            $.ajaxSetup({
+              beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+              }
+            });
+
+            function createRow(text) {
+              var $row = $('<li class="list-group-item></li>');
+                // added alignment in list tag
+              var list = '<li class="list-group-item" align="left">'
+
+               var k = text.split("\n")
+
+               for(i=0;i<k.length;i++) {
+                   list += k[i]+"<br />"
+               }
+
+              list = list + "</li>"
+              $row.text(list);
+              $chatlog.append(list);
+              //$chatlog.append(text);
+            }
+
+            function submitInput() {
+              var inputData = {
+                'text': $input.val()
+
+              }
+              // Display the user's input on the web page
+              createRow(inputData.text);
+              var dialogflowChatUrl = '{% url "chat-home" %}';
+              var $submit = $.ajax({
+                type: 'POST',
+                url: dialogflowChatUrl,
+                data: JSON.stringify(inputData),
+                contentType: 'application/json',
+              });
+
+
+
+              $submit.done(function(statement) {
+                  //createRow(statement.text);
+                  createRow(statement);
+                    //Added ----> calling syncing function
+                    playsyncronized(statement)
+                  console.log("this is", statement)
+                  // Clear the input field
+                  $input.val('');
+              });
+
+              $submit.fail(function() {
+                // TODO: Handle errors
+              });
+            }
+
+            $sayButton.click(function() {
+              submitInput();
+            });
+
+            $input.keydown(function(event) {
+              // Submit the input when the enter button is pressed
+              if (event.keyCode == 13) {
+                submitInput();
+              }
+            });
+          </script>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,315 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+ <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ <script src="{% static 'js/wow.min.js' %}"></script>
+              <script>
+              new WOW().init();
+              </script>
+<script type="text/javascript" src="{% static 'js/libgif.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Virtual Cop</title><meta name="description" content="Example of using GIF files to bring text to speech voices to life in your browser.">
+<style>
+
+		/* the superGifCanvas elements can be styled if you need to*/
+		/*
+		.superGifCanvas {
+			width:100%;
+		}
+		*/
+		* {
+		    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.guierrormessage {
+			color: #FF0000;
+		}
+		.guioption{
+			width: 280px;
+			padding: 0.2em;
+			font-size: 1em;
+			display: inline-block;
+			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1) inset;
+		}
+		#giferrormessage {
+			display: inline-block;
+		}
+		#newgifbutton {
+		font-size: 1.0rem;
+		padding: 0.5rem 0.6em;
+		background: #69c773;
+		border-bottom: 1px solid #498b50;
+		color: white;
+		-webkit-font-smoothing: antialiased;
+		font-weight: bold;
+		margin: 0;
+		height: 35px;
+		text-align: center;
+		}
+		#texttospeakinput {
+			width:96%;
+		}
+		.superGifCanvas{
+			max-width: 100%;
+		}
+		#imagecontainer{
+			left: 0;
+    position: absolute;
+		}
+body
+{
+background-color:black;
+}
+.nav-link:hover
+{
+color:rgba(255, 87, 51);
+}
+.bar1
+{
+background-color:rgba(23, 32, 42);
+color:rgba(255, 87, 51);
+height:60px;
+}
+.cc
+{
+color:white;
+margin-left:70px;
+}
+
+.bb
+{
+background-color:white;
+border-radius:50%;
+height:60px;
+width:60px;
+border:solid rgba(255, 87, 51) 3px;
+}
+.bb:hover
+{
+background-color:rgba(255, 87, 51);
+border:solid white 3px;
+}
+
+.ss
+{
+margin-left:70px;
+color:red;
+border:solid red 3px;
+}
+.ss:hover
+{
+
+border:solid white 2px;
+text-color:white;
+}
+
+
+</style>
+</head>
+<body>
+<div style="padding:10px;">
+<h4 style="float:left;color:rgba(255, 87, 51);">TEAM-TECHDHRONAS  <span style="color:white;">V-COP</span></h4>
+<div style="margin-left:1130px;top:20;color:white;">
+<i class="fa fa-fw fa-instagram"></i><i class="fa fa-fw fa-twitter"></i><i class="fa fa-fw fa-facebook"></i><i class="fa fa-fw fa-linkedin"></i><i class="fa fa-fw fa-envelope"></i>
+<i class="fa fa-fw fa-github"></i>
+<i class="fa fa-fw fa-youtube"></i>
+<i class="fa fa-fw fa-google-plus"></i>
+<i class="fa fa-fw fa-pinterest"></i>
+</div>
+</div>
+<hr style="margin-top: 0px;background-color:rgba(255, 87, 51);margin-bottom: 2px;">
+
+<nav class="navbar navbar-expand-sm bar1 navbar-black">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link cc" href="#"><i class="fa fa-fw fa-home"></i>Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link cc" href="#"><i class="fa fa-fw fa-info-circle"></i>How To Use</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link cc" href="#"><i class="fa fa-fw fa-search"></i>Track Your FIR</a>
+    </li>
+ <li class="nav-item">
+      <a class="nav-link cc" href="#"><i class="fa fa-fw fa-angle-double-left"></i>Back to VR Room</a>
+    </li>
+ <li class="nav-item">
+      <a class="nav-link cc" href="#"><i class="fa fa-fw fa-sign-in"></i>Login</a>
+    </li>
+ <li class="nav-item">
+      <a class="nav-link ss" href="#" ><i class="fa fa-fw fa-plus"></i>Emergency</a>
+    </li>
+  </ul>
+</nav>
+<center>
+  <div class = chatbox style="
+/* display: block; */
+position: fixed;
+bottom: 10px;
+right: 100px;
+height: 500px;
+width: 400px;
+">
+<div class="container"style="position: fixed;width: fit-content;left: 600px;
+">
+
+
+<div class="row" >
+<div class="col-xs-6 col-xs-offset-3">
+
+
+  <div class="input-group input-group-lg" style="position: fixed;bottom: 0;width: 400px;right: 0;">
+    <input type="text" class="form-control js-text" placeholder="Type Hi to begin."style="
+    bottom: 0px;
+    margin-bottom: 0px;
+    height: 45px;
+">
+    <span class="input-group-btn">
+      <button class="btn btn-primary js-say" onclick="scroll">Submit</button>
+    </span>
+  </div>
+
+</div>
+<ul class="list-group js-chat-log" style="max-height: 450px;overflow-x:hidden;overflow: auto;left: 370px;position: absolute;width: 435px;">
+</ul>
+</div>
+<script>
+window.onload=function () {
+ var objDiv = document.getElementById("list-group");
+ objDiv.scrollTop = objDiv.scrollHeight;
+}
+</script>
+
+</div>
+</div>
+
+  <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/js.cookie.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+
+<div id="ttsoptions">
+  <div>
+    <label style="
+    position: absolute;
+    right: 290px;
+    top: 12px;
+  ">Voice:</label>
+  <select id="voiceSelecter" class="guioption"style="
+  position: absolute;
+  right: 0;
+"></select>
+</div>
+
+</div>
+<script type="text/javascript">
+</script>
+<div >
+<a href="javascript:playsyncronized()">
+  <div id="imagecontainer">
+    <img id="exampleimg" src="https://i.imgur.com/ork8hoP.gif" rel:animated_src="https://i.imgur.com/ork8hoP.gif" rel:auto_play="0" />
+  </div>
+</a>
+</div>
+<br>
+
+<div id="footer">
+
+<script type="text/javascript" src="{% static 'js/example.js' %}"></script>
+</div>
+</center>
+<script>
+
+	var $chatlog = $('.js-chat-log');
+	var $input = $('.js-text');
+	var formData = new FormData();
+	var $sayButton = $('.js-say');
+	var dialogflowUrl = '{% url "index" %}';
+	var csrftoken = Cookies.get('csrftoken');
+
+
+	function csrfSafeMethod(method) {
+	  // these HTTP methods do not require CSRF protection
+	  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+	}
+
+	$.ajaxSetup({
+	  beforeSend: function(xhr, settings) {
+		if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+		  xhr.setRequestHeader("X-CSRFToken", csrftoken);
+		}
+	  }
+	});
+
+	function createRow(text) {
+	  var $row = $('<li class="list-group-item></li>');
+	  var list = '<li class="list-group-item" align="left">'
+
+	   var k = text.split("\n")
+
+	   for(i=0;i<k.length;i++) {
+		   list += k[i]+"<br />"
+	   }
+
+	  list = list + "</li>"
+	  $row.text(list);
+	  $chatlog.append(list);
+	  //$chatlog.append(text);
+	}
+
+
+	function submitInput() {
+	  var inputData = {
+		'text': $input.val()
+
+	  }
+	  // Display the user's input on the web page
+	  createRow(inputData.text);
+	  var dialogflowChatUrl = '{% url "chat-home" %}';
+	  var $submit = $.ajax({
+		type: 'POST',
+		url: dialogflowChatUrl,
+		data: JSON.stringify(inputData),
+		contentType: 'application/json',
+	  });
+
+
+
+	  $submit.done(function(statement) {
+		  //createRow(statement.text);
+		  createRow(statement);
+		  	//Added ----> calling syncing function
+			playsyncronized(statement)
+		  console.log("this is", statement)
+		  // Clear the input field
+		  $input.val('');
+	  });
+
+	  $submit.fail(function() {
+		// TODO: Handle errors
+	  });
+	}
+
+	$sayButton.click(function() {
+	  submitInput();
+	});
+
+	$input.keydown(function(event) {
+	  // Submit the input when the enter button is pressed
+	  if (event.keyCode == 13) {
+		submitInput();
+	  }
+	});
+</script>
+</body>
+</html>
